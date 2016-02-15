@@ -32,14 +32,16 @@ public class HelloWorld extends HttpServlet {
 		//Initializing results
 		String top10results = "Failed to get results from JDBC";
 		PrintWriter out = response.getWriter();
+		//get results from selectRows object
 		try {
+			//if success replace top10results with query data
 			top10results = new selectRows().queryEndUserCountry();
 		} catch (SQLException e) {
 			System.out.println("Error in query");
 			top10results = "Communication error at Database";
 		}catch (NullPointerException e) {
-			System.out.println("Nuoo pointer exception");}
-		
+			System.out.println("Null pointer exception");}
+		//print results on web bage
 		out.println("<html><body><h1 align = 'center'>Bookings Analysis</h1>"
 				+"<br><br>"+top10results+
 				"<br></body></html>");
